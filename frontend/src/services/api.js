@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080/api/migration';
+const APPLICATIONS_API_URL = 'http://localhost:8080/api/applications';
 
 export const getAllEaiCodes = async () => {
   const response = await axios.get(`${API_BASE_URL}/eaicodes`);
@@ -21,5 +22,26 @@ export const initializeApplication = async (eaiCode, username) => {
 
 export const updateMigrationItem = async (id, itemData) => {
   const response = await axios.put(`${API_BASE_URL}/${id}`, itemData);
+  return response.data;
+};
+
+// New API calls for application details
+export const getAllApplications = async () => {
+  const response = await axios.get(APPLICATIONS_API_URL);
+  return response.data;
+};
+
+export const getApplicationByEaiCode = async (eaiCode) => {
+  const response = await axios.get(`${APPLICATIONS_API_URL}/${eaiCode}`);
+  return response.data;
+};
+
+export const addApplication = async (applicationData) => {
+  const response = await axios.post(APPLICATIONS_API_URL, applicationData);
+  return response.data;
+};
+
+export const updateApplication = async (id, applicationData) => {
+  const response = await axios.put(`${APPLICATIONS_API_URL}/${id}`, applicationData);
   return response.data;
 };
