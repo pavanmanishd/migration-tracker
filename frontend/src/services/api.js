@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api/migration';
-const APPLICATIONS_API_URL = 'http://localhost:8080/api/applications';
+const API_BASE_URL = import.meta.env.VITE_API_URL ? 
+  `${import.meta.env.VITE_API_URL}/api/migration` : 
+  'http://localhost:8080/api/migration';
+
+const APPLICATIONS_API_URL = import.meta.env.VITE_API_URL ? 
+  `${import.meta.env.VITE_API_URL}/api/applications` : 
+  'http://localhost:8080/api/applications';
 
 // Configure axios to use auth token when available
 const setupAxiosInterceptors = () => {
