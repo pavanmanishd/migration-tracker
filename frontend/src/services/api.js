@@ -3,6 +3,23 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8080/api/migration';
 const APPLICATIONS_API_URL = 'http://localhost:8080/api/applications';
 
+// Configure axios to use auth token when available
+const setupAxiosInterceptors = () => {
+  axios.interceptors.request.use(
+    config => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    error => Promise.reject(error)
+  );
+};
+
+// Execute the interceptor setup
+setupAxiosInterceptors();
+
 export const getAllEaiCodes = async () => {
   const response = await axios.get(`${API_BASE_URL}/eaicodes`);
   return response.data;
@@ -25,7 +42,6 @@ export const updateMigrationItem = async (id, itemData) => {
   return response.data;
 };
 
-// New API calls for application details
 export const getAllApplications = async () => {
   const response = await axios.get(APPLICATIONS_API_URL);
   return response.data;
