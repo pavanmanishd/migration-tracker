@@ -49,7 +49,6 @@ public class MigrationService {
             existingItem.setLastUpdated(LocalDateTime.now());
             // Update new fields
             existingItem.setActivity(updatedItem.getActivity());
-            existingItem.setState(updatedItem.getState());
             existingItem.setTeamGroup(updatedItem.getTeamGroup());
             existingItem.setPlannedDate(updatedItem.getPlannedDate());
             existingItem.setCompletedOn(updatedItem.getCompletedOn());

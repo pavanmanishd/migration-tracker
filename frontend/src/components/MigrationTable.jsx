@@ -35,7 +35,6 @@ const MigrationTable = ({ items, onItemUpdated }) => {
   const [comments, setComments] = useState("");
   const [username, setUsername] = useState("");
   const [activity, setActivity] = useState("");
-  const [state, setState] = useState("");
   const [teamGroup, setTeamGroup] = useState("");
   const [plannedDate, setPlannedDate] = useState("");
   const [completedOn, setCompletedOn] = useState("");
@@ -57,7 +56,6 @@ const MigrationTable = ({ items, onItemUpdated }) => {
     setComments(item.comments || "");
     setUsername(item.updatedBy || "");
     setActivity(item.activity || "");
-    setState(item.state || "");
     setTeamGroup(item.teamGroup || "");
     setPlannedDate(item.plannedDate || "");
     setCompletedOn(item.completedOn || "");
@@ -79,7 +77,6 @@ const MigrationTable = ({ items, onItemUpdated }) => {
         comments: comments,
         updatedBy: username,
         activity: activity,
-        state: state,
         teamGroup: teamGroup,
         plannedDate: plannedDate,
         completedOn: completedOn,
@@ -166,7 +163,7 @@ const MigrationTable = ({ items, onItemUpdated }) => {
                     <TableHead>
                       <TableRow>
                         <TableCell>Activity</TableCell>
-                        <TableCell>State</TableCell>
+                        <TableCell>Status</TableCell>
                         <TableCell>Team/Group</TableCell>
                         <TableCell>Planned Date</TableCell>
                         <TableCell>Completed On</TableCell>
@@ -180,11 +177,7 @@ const MigrationTable = ({ items, onItemUpdated }) => {
                         <TableRow key={item.id}>
                           <TableCell>{item.activity}</TableCell>
                           <TableCell>
-                            {item.state ? (
-                              <StatusBadge status={item.state} />
-                            ) : (
                               <StatusBadge status={item.status || "TBD"} />
-                            )}
                           </TableCell>
                           <TableCell>{item.teamGroup || "-"}</TableCell>
                           <TableCell>
@@ -249,13 +242,6 @@ const MigrationTable = ({ items, onItemUpdated }) => {
             fullWidth
             value={activity}
             onChange={(e) => setActivity(e.target.value)}
-          />
-          <TextField
-            margin="dense"
-            label="State"
-            fullWidth
-            value={state}
-            onChange={(e) => setState(e.target.value)}
           />
           <TextField
             margin="dense"

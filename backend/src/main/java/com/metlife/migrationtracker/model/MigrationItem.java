@@ -28,7 +28,6 @@ public class MigrationItem {
 
     // New fields for activities
     private String activity;
-    private String state;
     private String teamGroup;
     private LocalDateTime plannedDate;
     private LocalDateTime completedOn;
@@ -105,14 +104,6 @@ public class MigrationItem {
 
     public void setActivity(String activity) {
         this.activity = activity;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public String getTeamGroup() {
